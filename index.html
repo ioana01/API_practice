@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <title>weather app</title>
+</head>
+<body>
+    <header class="header">
+        <!-- <nav> -->
+            <!-- <div>
+                <div>
+                    <ion-icon name="partly-sunny" class="icon"></ion-icon>
+                    <span class="title fl">weather app</span>
+                </div>
+
+                <ul class="meniu">
+                    <span class="select">
+                        <li>
+                        
+                            <ion-icon name="chatbubbles" class="icon"></ion-icon>
+                            <span class="title">Contact</span>
+                        
+                        </li>
+                    </span>
+                    <span class="select">
+                        <li>
+                        
+                            <ion-icon name="rainy" class="icon"></ion-icon>
+                            <span class="title">weather
+                            </span>
+                        
+                        </li>
+                    </span>
+                    
+                </ul>
+                
+                
+            </div> -->
+            <ul class="newMenu">
+                <li class="logo">Weather app</li>
+                <li class="option">
+                    <ion-icon name="rainy" class="icon"></ion-icon>
+                    <span>Weather</span>
+                </li>
+                <li class="option">
+                    <ion-icon name="chatbubbles" class="icon"></ion-icon>
+                    <span>Contact</span>
+                </li>
+            </ul>
+        <!-- </nav> -->
+    </header>
+    <div class="select_city">
+        <!-- <ion-icon name="search"></ion-icon> -->
+        <input type="text" placeholder="Search your town here..." id="myCity" class="input">
+        <button class="current">Use current location</button>
+        <!-- <img src="./search.svg" alt="" id="input_img"> -->
+
+    </div>
+
+    <div class="weather">
+        <h2>Weather in <span id="town_name"> ? </span> is </h2>
+
+        <div class="results">
+            <p >Humidity: <br>
+                <input id="humidity" disabled class="inputInfo">
+            </p>
+            <p >Temperature: <br>
+               <input id="temperature" disabled class="inputInfo">
+            </p>
+            <p >Wind: <br>
+                <input id="wind" disabled class="inputInfo">
+            </p>
+        </div>
+    </div>
+
+    <script>
+        var globalLatitude;
+        var globalLongitude;
+
+        function activatePlacesSearch() {
+            var input = document.getElementById('myCity');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+
+        // FIND LONG AND LAT
+
+        var map, infoWindow;
+        function initMap() {
+            activatePlacesSearch();
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                globalLatitude = pos.lat;
+                globalLongitude = pos.lng;
+                
+                }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                                'Error: The Geolocation service failed.' :
+                                'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+        }
+        
+        document.querySelector('.current').addEventListener("click", function(event)
+        {
+            // FIND LOCATION
+            const KEY = "AIzaSyDVjy9V7FaxF0uyWEPlqYzWH_Qg1MLnd2g";
+            var loc;
+            let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${globalLatitude},${globalLongitude}&key=${KEY}`;
+
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              let parts = data.results[0].address_components;
+              
+              parts.forEach(part => {
+                
+                if (part.types.includes("locality")) {
+                    loc = part.long_name;
+                    document.getElementById("myCity").value = loc;
+                    document.getElementById("myCity").click();
+                }
+                
+              });
+            })
+            .catch(err => console.warn(err.message));
+        });
+    </script>
+    
+    
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="module" src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlt2aQ0sA8GXUe6KoqsExK239XN-MeB8c&libraries=places&callback=activatePlacesSearch"></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlt2aQ0sA8GXUe6KoqsExK239XN-MeB8c&libraries=places&callback=initMap"></script>
+</body>
+</html>

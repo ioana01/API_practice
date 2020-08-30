@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+/* 
+    NAV BAR
+*/
+
+.header {
+    background-color: cornsilk;
+
+    height: 60px;
+    width: 100%;
+}
+
+.icon {
+    color: crimson;
+
+    /* display: inline-block; */
+    width: 30px;
+    /* text-align: center; */
+    font-size: 350%;
+    margin-right: 10px;
+    margin-left: 15px;
+    margin-top: 0px;
+    position: absolute;
+
+    /* position: relative; */
+}
+
+.title {
+    font-weight: 400;
+
+    vertical-align: 20px;
+    font-family: 'Nunito', ;
+}
+
+.select {
+    float: right;
+}
+
+.select:hover {
+    color: crimson;
+    cursor: pointer;
+}
+
+.select li {
+    display: inline-block;
+
+    outline-style: inset;
+    padding: 0 25px 0 10px;
+    outline-color: crimson;
+}
+
+.meniu {
+    /* float: right; */
+}
+
+nav {
+    /* background: #222; */
+    padding: 0 15px;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+.newMenu {   
+    display: flex;
+    /* color: crimson; */
+    /* text-align: center; */
+    /* display: table; */
+}
+
+.newMenu li {
+    list-style-type: none;
+    margin: 20px 25px 0 10px;
+    display:inline-block;
+    /* outline-style: inset; */
+    /* vertical-align: middle; */
+}
+
+.newMenu ul li span {
+    /* vertical-align: middle; */
+}
+
+.newMenu ul {
+    /* display:table-row; */
+}
+
+.logo {
+    flex: 1;
+}
+
+.option {
+    vertical-align: 200px;
+    font-family: 'Nunito';
+}
+
+.option:hover {
+    color: crimson;
+    cursor: pointer;
+}
+
+
+/* 
+    SEARCH CITY BAR
+*/
+
+.input {
+    width: 75%;
+    height: 30px;
+    margin-top: 5%;
+    margin-left: 12.5%;
+
+    outline: none;
+    border: none;
+    /* background-color: cornsilk; */
+    border-style: groove;
+    border-radius: 8px;
+
+    color: rgba(0, 0, 0, 0.7);
+    padding-left: 10px;
+    padding-right: 40px;
+
+    background: url(./search.svg)no-repeat 98%;
+    background-size: 16px;
+}
+
+/* #input_img {
+    position:absolute;
+    bottom:2px;
+    right:5px;
+    width:24px;
+    height:24px;
+}
+
+.select_city {
+    position:relative;
+    padding:0 0 0 20px;
+    margin:0 20px;
+    /* background:#ddd; */
+    /* direction: rtl; */
+    /* width: 200px; */
+/* } */
+
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text);
+}
+
+.current {
+    width: 15%;
+    margin-left: 42.5%;
+    margin-top: 30px;
+    padding: 10px 5px 10px 5px;
+
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    border-style: groove;
+}
+
+.current:hover {
+    color: crimson;
+    cursor: pointer;
+}
+
+/* 
+    weather RESULTS
+*/
+.weather {
+    width: 75%;
+    margin-left: 12.5%;
+    margin-top: 40px;
+    padding-bottom: 35px;
+    /* margin-bottom: 100px; */
+
+    background-color: cornsilk;
+    border-style: groove;
+    border-radius: 12px;
+}
+
+.weather h2 {
+    width: 75%;
+    margin-left: 12.5%;
+    padding-top: 20px;
+
+    text-align: center;
+}
+
+.results {
+    /* background-color: salmon; */
+    width: 75%;
+    margin-left: 12.5%;
+    margin-top: 30px;
+
+    font-size: large;
+    line-height: 1.6;
+}
+
+.inputInfo {
+    border-radius: 8px;
+    height: 30px;
+
+    padding: 10px;
+}
